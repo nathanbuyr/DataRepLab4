@@ -1,38 +1,31 @@
 import Movies from "./Movies";
+import { useEffect, useState } from "react";
+import axios from "axios"; // Axios is used here to fetch data in react applications through asynchronously HTTP requests
 {/* ReadFunction*/ }
 {/* Using seprated components,it separates concerns and makes the app modular*/ }
 
 {/* Variable to store JSON data for movies */ }
-const movies =
-    [
-        {
-            "Title": "Avengers: Infinity War",
-            "Year": "2018",
-            "imdbID": "tt4154756",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg"
-        },
-        {
-            "Title": "Captain America: Civil War",
-            "Year": "2016",
-            "imdbID": "tt3498820",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg"
-        },
-        {
-            "Title": "World War Z",
-            "Year": "2013",
-            "imdbID": "tt0816711",
-            "Type": "movie",
-            "Poster": "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg"
-        }
-    ]
 const Read = () => {
+
+    const [movies, setMovies] = useState([]); //useState allows to add state variables to functional components.
+
+    // Asynchronously accessing the movie data the main website doesn't freeze
+    useEffect(() => { // useEffect is used here to connect the read.js component to an external system
+        axios.get('https://jsonblob.com/api/jsonblob/1287718524221775872') // Grabbing the jsondata using axios
+            .then((response) => {
+                console.log(response.data);
+                setMovies(response.data.movies);
+            })
+            .catch((error) => {
+                console.log(error);
+            });
+    });
+
     return (
         <div>
-        <h3>My Read in another component</h3>
-        {/*Creating a myMovies variable to store the data of each movie so it can be used in Movieitem*/}
-        <Movies myMovies={movies}/>
+            <h3>My Read in another component</h3>
+            {/*Creating a myMovies variable to store the data of each movie so it can be used in Movieitem*/}
+            <Movies myMovies={movies} />
         </div>
     )
 };
