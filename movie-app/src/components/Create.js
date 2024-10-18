@@ -9,7 +9,8 @@ function Create() {
 
   const handleSubmit = (e) => { //Logging the user implemented data into the console
     e.preventDefault(); // preventDefault prevents this function being called multiple times
-    console.log(title, year, poster);
+    const movie = {title,year,poster};
+    console.log(movie);
   }
   return (
     <div>
