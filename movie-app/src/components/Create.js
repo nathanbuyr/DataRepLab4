@@ -14,7 +14,8 @@ function Create() {
   return (
     <div>
       <h2>This is my Create Component.</h2>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}> {/* When button is clicked, handleSubmit function is called*/}
+        {/* Movie Title handler*/}
         <div className="form-group">
           <label>Add Movie Title: </label>
           <input type="text"
@@ -23,6 +24,7 @@ function Create() {
             onChange={(e) => { setTitle(e.target.value) }} //onChange recognizes when the button is clicked and invoked the function to log the data
           />
         </div>
+        {/* Movie Year handler*/}
         <div className="form-group">
           <label>Add Movie Year: </label>
           <input type="text"
@@ -31,6 +33,7 @@ function Create() {
             onChange={(e) => { setYear(e.target.value) }}
           />
         </div>
+        {/* Movie Poster handler*/}
         <div className="form-group">
           <label>Add Movie Poster url: </label>
           <input type="text"
